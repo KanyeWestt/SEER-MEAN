@@ -1,0 +1,63 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by title"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchTitle()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Evidences List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let evidence of evidences; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveEvidence(evidence, i)"
+        >
+          {{ evidence.title }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllEvidences()">
+        Remove All
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentEvidence">
+        <h4>Evidence</h4>
+        <div>
+          <label><strong>Title:</strong></label> {{ currentEvidence.title }}
+        </div>
+        <div>
+          <label><strong>Description:</strong></label>
+          {{ currentEvidence.description }}
+        </div>
+        <div>
+          <label><strong>Status:</strong></label>
+          {{ currentEvidence.published ? "Published" : "Pending" }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/evidences/{{ currentEvidence.id }}">
+          Edit
+        </a>
+      </div>
+  
+      <div *ngIf="!currentEvidence">
+        <br />
+        <p>Please click on an Evidence...</p>
+      </div>
+    </div>
+  </div>
