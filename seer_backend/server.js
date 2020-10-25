@@ -16,6 +16,9 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 // connect to DB
 const db = require("./app/models");
 db.mongoose
