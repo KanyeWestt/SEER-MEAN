@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 // API routes use this
-const baseUrl = 'http://localhost:8080/api/evidences';
+const baseUrl = 'https://seer-deploy.herokuapp.com/';
 
 @Injectable({
   providedIn: 'root'

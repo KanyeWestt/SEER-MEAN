@@ -18,8 +18,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // connect to DB
 const db = require("./app/models");
+// db.mongoose
+//   .connect(db.url, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   })
+//   .then(() => {
+//     console.log("Connected to the database!");
+//   })
+//   .catch(err => {
+//     console.log("Cannot connect to the database!", err);
+//     process.exit();
+//   });
+
+// new db
 db.mongoose
-  .connect(db.url, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -39,7 +53,7 @@ app.get("/", (req, res) => {
 require("./app/routes/evidence.routes")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
