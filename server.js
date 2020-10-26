@@ -18,8 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // connect to DB
 const db = require("./app/models");
+
 db.mongoose
-  .connect(db.url, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
